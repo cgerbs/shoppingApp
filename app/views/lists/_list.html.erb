@@ -1,0 +1,24 @@
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end  %>
+<h3>Players currently on your watchlist:</h3>
+
+<table>
+  <% @list.lineitems.each do |item| %>
+  <tr>
+    <td><%= item.player.name %> - (<%= item.quantity %>)</td>
+    <td class = "item_rating"> <%= item.player.rating %></td>
+  </tr>
+  <% end %>
+  <tr class = "total_ratings">
+    <td colspan = "2"> Sum of ratings = </td>
+    <td class = "total_cell"><%= @list.total_ratings %></td>
+  </tr>
+</table>
+
+<%= button_to 'Clear Recruiting List', @list, method: :delete, data:{confirm: 'are you sure?'} %>
+<%= button_to 'Message players', new_contact_path, method: :get %>
+
+
+<%# <%= link_to 'Edit', edit_list_path(@list) %>
+<%# <%= link_to 'Back', lists_path %>

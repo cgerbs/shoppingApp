@@ -1,0 +1,28 @@
+
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end  %>
+<h1>Draft Prospects</h1>
+<table>
+ 
+    <% @players.each do |player| %>
+      <tr class = "<%=cycle('list_line_odd','list_line_even')%>">
+        <td><%= image_tag(player.image, class: 'list_image') %></td>
+
+        <td class="list_description">
+        <dl>
+        <h3 class = 'player_name'><dt><%= player.name %><br></dt></h3>
+        <br>
+        <dd><%= player.description %><br></dd>
+        <dd class = "rating">Rating: <%= player.rating %>/5<br></dd></td>
+      
+        <td class ="list_actions">
+        <button><%= link_to 'Show', player, :style=>'text-decoration: none; background-color: unset; color:unset;' %><br></button>
+        <button><%= link_to 'Edit', edit_player_path(player), :style=>'text-decoration: none; background-color: unset; color:unset;' %><br></button>
+        <button><%= link_to 'Destroy', player, :style=>'text-decoration: none; background-color: unset; color:unset;',method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
+      </tr>
+    <% end %>
+<%# </tbody> %>
+</table>
+<br>
+<p><%= link_to 'New Player', new_player_path %></p>
